@@ -162,6 +162,7 @@ int main()
     {
         cerr << "Error opening file! Better luck next time..." << endl;
     }
+    cout << endl; // Spacing
     return 0;
 }
 
