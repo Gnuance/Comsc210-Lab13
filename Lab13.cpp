@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <array>
+// #include <array>
 #include <vector> // For vector instead of array
 #include <string>
 #include <algorithm> // sort(), find()
@@ -24,8 +24,8 @@ int main()
     const string COLOR_BAR = string(15, ' ');
     const unsigned int SIZE = 30;
     string fileLine = "";
-    array<int, SIZE> colorCodes = {}; // Initialize array, will be destroyed and redefined during file read
-    array<int, SIZE>::iterator it;    // Iterator to traverse array
+    vector<int> colorCodes = {}; // Initialize vector, will be destroyed and redefined during file read
+    vector<int>::iterator it;    // Iterator to traverse array. Not really needed because each loop redeclares iterator anyways
     unsigned int index = 0;
     // File to read from
     const string INPUT_FILE_NAME = "colorCodes.txt";
@@ -40,7 +40,7 @@ int main()
         {
             if (stoi(fileLine) >= 0 && stoi(fileLine) <= 255)
             {
-                colorCodes.at(index) = stoi(fileLine);
+                colorCodes.push_back(stoi(fileLine));
                 index++;
             }
         }
@@ -78,10 +78,10 @@ int main()
             SetBackgroundColor(*it);
             cout << *it << " ";
             index++;
+            ResetColor();
             if (index % 10 == 0)
                 cout << endl; // Add line spacing
         }
-        ResetColor();
 
         // Output front, back min, max and average
         cout << "\nFront Color: ";
